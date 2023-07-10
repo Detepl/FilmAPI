@@ -1,8 +1,8 @@
 """Initial
 
-Revision ID: c09c3718e597
-Revises: 84c591c5d9de
-Create Date: 2023-07-02 20:07:48.091182
+Revision ID: 2a8f5c5dea26
+Revises: 
+Create Date: 2023-07-10 13:59:57.127001
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c09c3718e597'
-down_revision = '84c591c5d9de'
+revision = '2a8f5c5dea26'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -30,11 +30,10 @@ def upgrade() -> None:
     op.create_table('review',
     sa.Column('film_id', sa.Integer(), nullable=True),
     sa.Column('comment', sa.String(), nullable=True),
-    sa.Column('grade', sa.Integer(), nullable=True),
-    sa.Column('date', sa.TIMESTAMP(), nullable=True)
+    sa.Column('grade', sa.Integer(), nullable=True)
     )
     op.create_table('user',
-    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('email', sa.String(), nullable=False),
     sa.Column('username', sa.String(), nullable=False),
     sa.Column('hashed_password', sa.String(), nullable=False),
