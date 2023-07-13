@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgres:15
+    container_name: db_filmapi
+    command: -p 5433
+    expose:
+      - 5433
+    env_file:
+      - .env-docker
+
+  api_app:
+    build:
+      context: /
+    env_file:
+      - .env-docker
+    container_name: filmapi_app
+#    command:
+#      - gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind=0.0.0.0:8004
+    ports:
+      - 8880:8004
+    depends_on:
+      - db
